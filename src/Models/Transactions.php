@@ -12,7 +12,7 @@ class Transactions extends Model
 
     public static function logTransaction($to, $from, $quantity, $comment = null)
     {
-       return Transactions::create([
+        return Transactions::create([
             'user_id' => $to,
             'to_user_id' => $from,
             'quantity' => $quantity,

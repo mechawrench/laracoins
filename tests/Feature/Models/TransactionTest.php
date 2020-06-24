@@ -3,7 +3,6 @@
 namespace Mechawrench\Laracoins\Tests\Feature\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mechawrench\Laracoins\Models\Coin;
 use Mechawrench\Laracoins\Models\Transactions;
 use Mechawrench\Laracoins\Tests\TestCase;
 

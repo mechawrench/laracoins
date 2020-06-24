@@ -27,19 +27,19 @@ class CoinTest extends TestCase
     {
         $sender = factory(Coin::class)->create([
             'user_id' => 1,
-            'quantity' => 100
+            'quantity' => 100,
         ]);
 
         $receiver = factory(Coin::class)->create([
             'user_id' => 2,
-            'quantity' => 0
+            'quantity' => 0,
         ]);
 
         $this->assertEquals(100, $sender->quantity);
         $this->assertEquals(0, $receiver->quantity);
 
         // Perform user trade
-        Coin::trade(1,2, 50);
+        Coin::trade(1, 2, 50);
 
         // Refresh models
         $sender->refresh();
@@ -68,7 +68,7 @@ class CoinTest extends TestCase
         $this->assertEquals(0, $receiver->quantity);
 
         // Perform user trade
-        $trade = Coin::trade(1,2, 50);
+        $trade = Coin::trade(1, 2, 50);
 
         $this->assertEquals('Failed, available balance is below quantity', $trade);
 
@@ -97,7 +97,7 @@ class CoinTest extends TestCase
         ]);
 
         // Perform user trade
-        $trade = Coin::trade(1,2, 50);
+        $trade = Coin::trade(1, 2, 50);
 
         $this->assertEquals('Failed, account coins are locked', $trade);
 
@@ -126,7 +126,7 @@ class CoinTest extends TestCase
         ]);
 
         // Perform user trade
-        $trade = Coin::trade(1,2, 50);
+        $trade = Coin::trade(1, 2, 50);
 
         $this->assertEquals('Failed, account coins are locked', $trade);
 

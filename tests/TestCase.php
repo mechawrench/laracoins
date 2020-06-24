@@ -2,8 +2,8 @@
 
 namespace Mechawrench\Laracoins\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Mechawrench\Laracoins\LaracoinsServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

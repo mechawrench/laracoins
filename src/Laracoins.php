@@ -4,5 +4,4 @@ namespace Mechawrench\Laracoins;
 
 class Laracoins
 {
-
 }
