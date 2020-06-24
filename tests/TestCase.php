@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Mechawrench\Laracoins\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Spatie\Skeleton\SkeletonServiceProvider;
+use Mechawrench\Laracoins\LaracoinsServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -17,7 +17,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            LaracoinsServiceProvider::class,
         ];
     }
 
@@ -30,9 +30,10 @@ class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        /*
-        include_once __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        (new \CreatePackageTable())->up();
-        */
+
+        include_once __DIR__.'/../database/migrations/create_laracoins_coins_table.stub';
+        (new \CreateLaracoinsCoinsTable())->up();
+        include_once __DIR__.'/../database/migrations/create_laracoins_transactions_table.stub';
+        (new \CreateLaracoinsTransactionsTable())->up();
     }
 }

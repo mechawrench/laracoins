@@ -1,17 +1,17 @@
 {
-    "name": "spatie/:package_name",
-    "description": ":package_description",
+    "name": "mechawrench/laracoins",
+    "description": "Currency for users of a Laravel application",
     "keywords": [
         "spatie",
-        ":package_name"
+        "laracoins"
     ],
-    "homepage": "https://github.com/spatie/:package_name",
+    "homepage": "https://github.com/mechawrench/laracoins",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": "https://spatie.be",
+            "name": "Jesse Schneider",
+            "email": "mechawrench@users.noreply.github.com",
+            "homepage": "https://mechawrench.com",
             "role": "Developer"
         }
     ],
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Mechawrench\\Laracoins\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Mechawrench\\Laracoins\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "Mechawrench\\Laracoins\\LaracoinsServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "Skeleton": "Mechawrench\\Laracoins\\LaracoinsFacade"
             }
         }
     },

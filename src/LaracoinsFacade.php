@@ -1,13 +1,13 @@
 <?php
 
-namespace Spatie\Skeleton;
+namespace Mechawrench\Laracoins;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Spatie\Skeleton\Skeleton
+ * @see \Spatie\Skeleton\Laracoins
  */
-class SkeletonFacade extends Facade
+class LaracoinsFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {

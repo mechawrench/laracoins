@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\Skeleton\Commands;
+namespace Mechawrench\Laracoins\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaracoinsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laracoins';
 
     public $description = 'My command';
 

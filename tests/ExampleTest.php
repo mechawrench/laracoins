@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Mechawrench\Laracoins\Tests;
 
 class ExampleTest extends TestCase
 {
