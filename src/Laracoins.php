@@ -20,4 +20,6 @@ class Laracoins
     {
         return Coin::unlock($user_id);
     }
+
+    // TODO: Coins from system, user_id of 0 (fundUser)
 }
