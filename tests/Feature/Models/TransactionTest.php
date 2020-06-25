@@ -49,8 +49,12 @@ class TransactionTest extends TestCase
 
         $transaction = Laracoins::tradeCoins(1, 2, 50, 'Test');
 
-        $user_history = Laracoins::userHistory(1);
+        // Test for first user history
+        $user_history_first = Laracoins::userHistory(1);
+        $this->assertTrue($user_history_first->contains('id', $transaction->id));
 
-        $this->assertTrue($user_history->contains('id', $transaction->id));
+        // Test for second (to) user history retrieval
+        $user_history_second = Laracoins::userHistory(2);
+        $this->assertTrue($user_history_second->contains('id', $transaction->id));
     }
 }
