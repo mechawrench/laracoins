@@ -17,8 +17,6 @@ class CoinTest extends TestCase
             'user_id' => 1,
         ]);
 
-        $this->assertDatabaseCount('laracoins_coins', 1);
-
         $this->assertEquals('1', $model->user_id);
     }
 
@@ -47,8 +45,6 @@ class CoinTest extends TestCase
 
         $this->assertEquals(50, $sender->quantity);
         $this->assertEquals(50, $receiver->quantity);
-
-        $this->assertDatabaseCount('laracoins_transactions', 1);
     }
 
     /** @test */
@@ -78,8 +74,6 @@ class CoinTest extends TestCase
 
         $this->assertEquals(49, $sender->quantity);
         $this->assertEquals(0, $receiver->quantity);
-
-        $this->assertDatabaseCount('laracoins_transactions', 0);
     }
 
     /** @test */
@@ -107,8 +101,6 @@ class CoinTest extends TestCase
 
         $this->assertEquals(100, $sender->quantity);
         $this->assertEquals(0, $receiver->quantity);
-
-        $this->assertDatabaseCount('laracoins_transactions', 0);
     }
 
     /** @test */
@@ -136,8 +128,6 @@ class CoinTest extends TestCase
 
         $this->assertEquals(100, $sender->quantity);
         $this->assertEquals(0, $receiver->quantity);
-
-        $this->assertDatabaseCount('laracoins_transactions', 0);
     }
 
     /** @test */

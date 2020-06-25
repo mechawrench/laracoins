@@ -12,7 +12,7 @@ Currency for application users.  Can be traded, sold, etc.
 You can install the package via composer:
 
 ```bash
-composer require mechawrench/package-skeleton-laravel
+composer require mechawrench/laracoins
 ```
 
 You can publish and run the migrations with:

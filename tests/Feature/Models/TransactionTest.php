@@ -13,10 +13,8 @@ class TransactionTest extends TestCase
     /** @test */
     public function it_can_log_a_transaction()
     {
-        $this->assertDatabaseCount('laracoins_transactions', 0);
-
         Transactions::logTransaction(1, 2, 50, 'Test Comment');
 
-        $this->assertDatabaseCount('laracoins_transactions', 1);
+        $this->assertEquals(1, Transactions::all()->count());
     }
 }
