@@ -1,7 +1,20 @@
 # Changelog
+All notable changes to this project will be documented in this file.
 
-All notable changes to `laracoins` will be documented in this file
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.0.0 - 202X-XX-XX
+## [Unreleased]
 
-- initial release
+## [0.0.1] - 2020-xx-xx
+### Added
+- n/a
+
+### Changed
+- n/a
+
+### Removed
+- n/a
+
+[Unreleased]: https://github.com/mechawrench/laracoins/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/mechawrench/laracoins/releases/tag/v0.0.1

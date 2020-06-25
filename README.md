@@ -1,7 +1,7 @@
-# Currency for users of a Laravel application
+# LaraCoins
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/mechawrench/laracoins/run-tests?label=tests)](https://github.com/mechawrench/laracoins/actions?query=workflow%3Arun-tests+branch%3Amaster)
+![Tests](https://github.com/mechawrench/laracoins/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
 
 
@@ -37,10 +37,11 @@ return [
 ## Usage
 
 ``` php
+// Import class
 use Mechawrench\Laracoins;
 
 // Send coins between users
-Laracoins::tradeCoins($to, $from, $amount, $comment);
+Laracoins::tradeCoins($to_user_id, $from_user_id, $amount, $comment);
 
 // Lock and unlock user coins
 Laracoins::lockUser($user_id);
