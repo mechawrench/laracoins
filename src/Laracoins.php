@@ -11,8 +11,7 @@ class Laracoins
     {
         $trade = Coin::trade($from, $to, $quantity, $comment);
 
-        if($trade !== 0)
-        {
+        if ($trade !== 0) {
             return $trade;
         }
 
