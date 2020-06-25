@@ -42,10 +42,6 @@ class Coin extends Model
     {
         $user = Coin::firstOrCreate(['user_id' => $user_id]);
 
-        if (! $user) {
-            return 'User not found';
-        }
-
         if ($user->is_locked) {
             return 'User is already locked';
         }
@@ -59,10 +55,6 @@ class Coin extends Model
     public static function unlock($user_id)
     {
         $user = Coin::firstOrCreate(['user_id' => $user_id]);
-
-        if (! $user) {
-            return 'User not found';
-        }
 
         if (! $user->is_locked) {
             return 'User is already unlocked';
