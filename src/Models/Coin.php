@@ -39,7 +39,7 @@ class Coin extends Model
 
     public static function lock($user_id)
     {
-        $user = Coin::where('user_id', $user_id)->first();
+        $user = Coin::firstOrCreate(['user_id' => $user_id]);
 
         if (! $user) {
             return 'User not found';
@@ -57,7 +57,7 @@ class Coin extends Model
 
     public static function unlock($user_id)
     {
-        $user = Coin::where('user_id', $user_id)->first();
+        $user = Coin::firstOrCreate(['user_id' => $user_id]);
 
         if (! $user) {
             return 'User not found';

@@ -164,7 +164,9 @@ class CoinTest extends TestCase
     {
         $result = Laracoins::lockUser(1);
 
-        $this->assertEquals('User not found', $result);
+        $user = Coin::where('user_id', 1)->first();
+
+        $this->assertEquals(1, $user->is_locked);
     }
 
     /** @test */
@@ -201,6 +203,8 @@ class CoinTest extends TestCase
     {
         $result = Laracoins::unlockUser(1);
 
-        $this->assertEquals('User not found', $result);
+        $user = Coin::where('user_id', 1)->first();
+
+        $this->assertEquals(0, $user->is_locked);
     }
 }
