@@ -218,4 +218,17 @@ class CoinTest extends TestCase
 
         $this->assertEquals(200, Coin::whereUserId($receiver->id)->first()->quantity);
     }
+
+    /** @test */
+    public function it_can_retrieve_user_balance()
+    {
+        $user_coins = factory(Coin::class)->create([
+            'user_id' => 1,
+            'quantity' => 100,
+        ]);
+
+        $retrieve_user_coins = Laracoins::balance(1);
+
+        $this->assertEquals($user_coins->quantity, $retrieve_user_coins);
+    }
 }

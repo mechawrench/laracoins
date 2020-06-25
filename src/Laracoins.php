@@ -39,4 +39,9 @@ class Laracoins
 
         return Transactions::logTransaction(0, $user_id, $quantity, $comment);
     }
+
+    public static function balance($user_id)
+    {
+        return Coin::firstOrCreate(['user_id' => $user_id])->quantity;
+    }
 }
