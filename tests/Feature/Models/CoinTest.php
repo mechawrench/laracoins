@@ -2,6 +2,7 @@
 
 namespace Mechawrench\Laracoins\Tests\Feature\Models;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mechawrench\Laracoins\Laracoins;
 use Mechawrench\Laracoins\Models\Coin;
@@ -206,5 +207,15 @@ class CoinTest extends TestCase
         $user = Coin::where('user_id', 1)->first();
 
         $this->assertEquals(0, $user->is_locked);
+    }
+
+    /** @test */
+    public function it_can_fund_a_user()
+    {
+        $receiver = factory(Coin::class)->create(['quantity' => 0]);
+
+        Laracoins::fundUser($receiver->id, 200, 'Fund from test');
+
+        $this->assertEquals(200, Coin::whereUserId($receiver->id)->first()->quantity);
     }
 }

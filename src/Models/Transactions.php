@@ -10,11 +10,11 @@ class Transactions extends Model
 
     public $guarded = [];
 
-    public static function logTransaction($to, $from, $quantity, $comment = null)
+    public static function logTransaction($from, $to, $quantity, $comment = null)
     {
         return Transactions::create([
-            'user_id' => $to,
-            'to_user_id' => $from,
+            'user_id' => $from,
+            'to_user_id' => $to,
             'quantity' => $quantity,
             'comment' => $comment,
         ]);

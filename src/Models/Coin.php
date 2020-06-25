@@ -13,8 +13,8 @@ class Coin extends Model
     public static function trade($from_user, $to_user_id, $quantity, $comment = null)
     {
         // Check for available balance
-        $available = Coin::where('user_id', $from_user)->first();
-        $send_to = Coin::where('user_id', $to_user_id)->first();
+        $available = Coin::firstOrCreate(['user_id' => $from_user]);
+        $send_to = Coin::firstOrCreate(['user_id' => $to_user_id]);
 
         // Ensure account is not locked
         if ($available->is_locked || $send_to->is_locked) {
@@ -22,17 +22,18 @@ class Coin extends Model
         }
 
         // Ensure enough quantity is available for trade
-        if ($available->quantity < $quantity) {
+        if ($from_user != 0 && $available->quantity < $quantity) {
             return 'Failed, available balance is below quantity';
         }
 
-        $available->quantity = $available->quantity - $quantity;
-        $available->save();
+        // Grab from bank if not from user, bank has infinite supply...
+        if ($from_user != 0) {
+            $available->quantity = $available->quantity - $quantity;
+            $available->save();
+        }
 
         $send_to->quantity = $send_to->quantity + $quantity;
         $send_to->save();
-
-        Transactions::logTransaction($to_user_id, $from_user, $quantity, $comment);
 
         return 0;
     }

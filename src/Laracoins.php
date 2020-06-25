@@ -3,12 +3,20 @@
 namespace Mechawrench\Laracoins;
 
 use Mechawrench\Laracoins\Models\Coin;
+use Mechawrench\Laracoins\Models\Transactions;
 
 class Laracoins
 {
     public static function tradeCoins($from, $to, $quantity, $comment)
     {
-        return Coin::trade($from, $to, $quantity, $comment);
+        $trade = Coin::trade($from, $to, $quantity, $comment);
+
+        if($trade !== 0)
+        {
+            return $trade;
+        }
+
+        return Transactions::logTransaction($from, $to, $quantity, $comment);
     }
 
     public static function lockUser($user_id)
@@ -21,5 +29,15 @@ class Laracoins
         return Coin::unlock($user_id);
     }
 
-    // TODO: Coins from system, user_id of 0 (fundUser)
+    public static function userHistory($user_id)
+    {
+        return Transactions::whereUserId($user_id)->orderBy('created_at', 'asc')->get();
+    }
+
+    public static function fundUser($user_id, $quantity, $comment)
+    {
+        Coin::trade(0, $user_id, $quantity, $comment);
+
+        return Transactions::logTransaction(0, $user_id, $quantity, $comment);
+    }
 }
