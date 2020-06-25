@@ -8,7 +8,7 @@ class Laracoins
 {
     public static function tradeCoins($from, $to, $quantity, $comment)
     {
-       return Coin::trade($from, $to, $quantity, $comment);
+        return Coin::trade($from, $to, $quantity, $comment);
     }
 
     public static function lockUser($user_id)

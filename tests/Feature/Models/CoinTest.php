@@ -38,7 +38,7 @@ class CoinTest extends TestCase
         $this->assertEquals(0, $receiver->quantity);
 
         // Perform user trade
-        Laracoins::tradeCoins(1,2,50,null);
+        Laracoins::tradeCoins(1, 2, 50, null);
 
         // Refresh models
         $sender->refresh();
@@ -65,7 +65,7 @@ class CoinTest extends TestCase
         $this->assertEquals(0, $receiver->quantity);
 
         // Perform user trade
-        $trade = Laracoins::tradeCoins(1,2,50,null);
+        $trade = Laracoins::tradeCoins(1, 2, 50, null);
 
         $this->assertEquals('Failed, available balance is below quantity', $trade);
 
@@ -92,7 +92,7 @@ class CoinTest extends TestCase
         ]);
 
         // Perform user trade
-        $trade = Laracoins::tradeCoins(1,2,50,null);
+        $trade = Laracoins::tradeCoins(1, 2, 50, null);
 
         $this->assertEquals('Failed, account coins are locked', $trade);
 
@@ -119,7 +119,7 @@ class CoinTest extends TestCase
         ]);
 
         // Perform user trade
-        $trade = Laracoins::tradeCoins(1,2,50,null);
+        $trade = Laracoins::tradeCoins(1, 2, 50, null);
 
         $this->assertEquals('Failed, account coins are locked', $trade);
 
@@ -173,7 +173,7 @@ class CoinTest extends TestCase
         $sender = factory(Coin::class)->create([
             'user_id' => 1,
             'quantity' => 100,
-            'is_locked' => true
+            'is_locked' => true,
         ]);
 
         Laracoins::unlockUser($sender->id);

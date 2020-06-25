@@ -63,7 +63,7 @@ class Coin extends Model
             return 'User not found';
         }
 
-        if (!$user->is_locked) {
+        if (! $user->is_locked) {
             return 'User is already unlocked';
         }
 
