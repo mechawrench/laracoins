@@ -26,7 +26,7 @@ class TransactionTest extends TestCase
         ]);
 
         $transaction = Laracoins::tradeCoins(1, 2, 50, 'Test');
-        
+
         $this->assertEquals(1, Transactions::all()->count());
         $this->assertEquals(1,  $transaction->user_id);
         $this->assertEquals(2,  $transaction->to_user_id);

@@ -5,7 +5,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
 
 
-Currency for application users.  Can be traded, sold, etc.
+WebApp currency, can be traded/sold/bought by users.
 
 ## Installation
 
@@ -31,17 +31,24 @@ This is the contents of the published config file:
 
 ```php
 return [
+
 ];
 ```
 
 ## Usage
 
 ``` php
-// Import class
+// Import class (at top of file)
 use Mechawrench\Laracoins;
+
+// Fund user account
+Laracoins::fundUser($user_id, $quantity, $comment);
 
 // Send coins between users
 Laracoins::tradeCoins($to_user_id, $from_user_id, $amount, $comment);
+
+// Get user history
+Laracoins::userHistory($user_id);
 
 // Lock and unlock user coins
 Laracoins::lockUser($user_id);
