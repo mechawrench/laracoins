@@ -37,8 +37,14 @@ return [
 ## Usage
 
 ``` php
-$skeleton = new Mechawrench\Laracoins();
-echo $skeleton->echoPhrase('Hello, Mechawrench!');
+use Mechawrench\Laracoins;
+
+// Send coins between users
+Laracoins::tradeCoins($to, $from, $amount, $comment);
+
+// Lock and unlock user coins
+Laracoins::lockUser($user_id);
+Laracoins::unlockUser($user_id);
 ```
 
 ## Testing
@@ -57,7 +63,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email freek@mechawrench.be instead of using the issue tracker.
+If you discover any security related issues, please email jesse.schneider@hey.com instead of using the issue tracker.
 
 ## Credits
 

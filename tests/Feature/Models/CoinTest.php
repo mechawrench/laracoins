@@ -3,6 +3,7 @@
 namespace Mechawrench\Laracoins\Tests\Feature\Models;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mechawrench\Laracoins\Laracoins;
 use Mechawrench\Laracoins\Models\Coin;
 use Mechawrench\Laracoins\Tests\TestCase;
 
@@ -37,7 +38,7 @@ class CoinTest extends TestCase
         $this->assertEquals(0, $receiver->quantity);
 
         // Perform user trade
-        Coin::trade(1, 2, 50);
+        Laracoins::tradeCoins(1,2,50,null);
 
         // Refresh models
         $sender->refresh();
@@ -64,7 +65,7 @@ class CoinTest extends TestCase
         $this->assertEquals(0, $receiver->quantity);
 
         // Perform user trade
-        $trade = Coin::trade(1, 2, 50);
+        $trade = Laracoins::tradeCoins(1,2,50,null);
 
         $this->assertEquals('Failed, available balance is below quantity', $trade);
 
@@ -91,7 +92,7 @@ class CoinTest extends TestCase
         ]);
 
         // Perform user trade
-        $trade = Coin::trade(1, 2, 50);
+        $trade = Laracoins::tradeCoins(1,2,50,null);
 
         $this->assertEquals('Failed, account coins are locked', $trade);
 
@@ -118,7 +119,7 @@ class CoinTest extends TestCase
         ]);
 
         // Perform user trade
-        $trade = Coin::trade(1, 2, 50);
+        $trade = Laracoins::tradeCoins(1,2,50,null);
 
         $this->assertEquals('Failed, account coins are locked', $trade);
 
@@ -153,7 +154,7 @@ class CoinTest extends TestCase
             'is_locked' => true,
         ]);
 
-        $result = Coin::lock($sender->id);
+        $result = Laracoins::lockUser($sender->id);
 
         $this->assertEquals('User is already locked', $result);
     }
@@ -161,7 +162,44 @@ class CoinTest extends TestCase
     /** @test */
     public function it_cant_lock_an_account_without_coins()
     {
-        $result = Coin::lock(1);
+        $result = Laracoins::lockUser(1);
+
+        $this->assertEquals('User not found', $result);
+    }
+
+    /** @test */
+    public function it_can_unlock_an_account()
+    {
+        $sender = factory(Coin::class)->create([
+            'user_id' => 1,
+            'quantity' => 100,
+            'is_locked' => true
+        ]);
+
+        Laracoins::unlockUser($sender->id);
+
+        $sender->refresh();
+        $this->assertEquals('0', $sender->is_locked);
+    }
+
+    /** @test */
+    public function it_cant_unlock_an_account_that_is_already_unlocked()
+    {
+        $sender = factory(Coin::class)->create([
+            'user_id' => 1,
+            'quantity' => 100,
+            'is_locked' => false,
+        ]);
+
+        $result = Laracoins::unlockUser($sender->id);
+
+        $this->assertEquals('User is already unlocked', $result);
+    }
+
+    /** @test */
+    public function it_cant_unlock_an_account_without_coins()
+    {
+        $result = Laracoins::unlockUser(1);
 
         $this->assertEquals('User not found', $result);
     }

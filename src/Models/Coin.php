@@ -54,4 +54,22 @@ class Coin extends Model
 
         return $user;
     }
+
+    public static function unlock($user_id)
+    {
+        $user = Coin::where('user_id', $user_id)->first();
+
+        if (! $user) {
+            return 'User not found';
+        }
+
+        if (!$user->is_locked) {
+            return 'User is already unlocked';
+        }
+
+        $user->is_locked = false;
+        $user->save();
+
+        return $user;
+    }
 }
