@@ -11,10 +11,19 @@ class CreateLaracoinsTransactionsTable extends Migration
         Schema::create('laracoins_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id'); // 0 for system
-            $table->integer('to_user_id')->unique();
+            $table->integer('to_user_id');
             $table->integer('quantity')->default(0);
             $table->string('comment')->nullable();
             $table->timestamps();
         });
+    }
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('laracoins_transactions');
     }
 }

@@ -231,4 +231,31 @@ class CoinTest extends TestCase
 
         $this->assertEquals($user_coins->quantity, $retrieve_user_coins);
     }
+
+    /** @test */
+    public function it_can_retrieve_top_10_token_holders()
+    {
+        $user_coins = factory(Coin::class, 20)->create([
+            'quantity' => rand(1, 1000),
+        ]);
+
+        $retrieve = Laracoins::topHolders();
+
+        $this->assertEquals(10, $retrieve->count());
+    }
+
+    /** @test */
+    public function it_sends_to_self_and_does_not_dupe_coin()
+    {
+        $user_coins = factory(Coin::class)->create([
+            'user_id' => 1,
+            'quantity' => 100,
+        ]);
+
+        Laracoins::tradeCoins(1, 1, 50, 'Test from CoinTest');
+
+        $user_coins->refresh();
+
+        $this->assertEquals(100, $user_coins->quantity);
+    }
 }

@@ -27,10 +27,13 @@ class Coin extends Model
         }
 
         // Grab from bank if not from user, bank has infinite supply...
-        if ($from_user != 0) {
+        if ($from_user !== 0) {
             $available->quantity = $available->quantity - $quantity;
             $available->save();
         }
+
+        // Refresh user, prevents duping coins when sending to self
+        $send_to->refresh();
 
         $send_to->quantity = $send_to->quantity + $quantity;
         $send_to->save();
