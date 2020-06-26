@@ -7,5 +7,6 @@ $factory->define(\Mechawrench\Laracoins\Models\Coin::class, function (Generator 
     return [
         'user_id' => $faker->numberBetween(0, 2000000),
         'quantity' => $faker->numberBetween(0, 2000),
+        'is_locked' => false,
     ];
 });

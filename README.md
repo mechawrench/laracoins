@@ -5,7 +5,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
 
 
-Currency for application users.  Can be traded, sold, etc.
+WebApp currency, can be traded/sold/bought by users.
 
 ## Installation
 
@@ -22,30 +22,31 @@ php artisan vendor:publish --provider="Mechawrench\Laracoins\LaracoinsServicePro
 php artisan migrate
 ```
 
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Mechawrench\Laracoins\LaracoinsServiceProvider" --tag="config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
 
 ``` php
-// Import class
+// Import class (at top of file)
 use Mechawrench\Laracoins;
 
-// Send coins between users
-Laracoins::tradeCoins($to_user_id, $from_user_id, $amount, $comment);
+// Fund user account
+Laracoins::fundUser($user_id, $quantity, $comment);
 
 // Lock and unlock user coins
 Laracoins::lockUser($user_id);
 Laracoins::unlockUser($user_id);
+
+// Send coins between users
+Laracoins::tradeCoins($to_user_id, $from_user_id, $amount, $comment);
+
+// Get user balance
+Laracoins::balance($user_id);
+
+// Get user history
+Laracoins::userHistory($user_id);
+
+// Get top coin holders, sorted in desc order
+Laracoins::topHolders();
+Laracoins::topHolders($quantity);
 ```
 
 ## Testing

@@ -1,8 +1,8 @@
 {
     "name": "mechawrench/laracoins",
-    "description": "Currency for users of a Laravel application",
+    "description": "WebApp currency, can be traded/sold/bought by users",
     "keywords": [
-        "spatie",
+        "mechawrench",
         "laracoins"
     ],
     "homepage": "https://github.com/mechawrench/laracoins",

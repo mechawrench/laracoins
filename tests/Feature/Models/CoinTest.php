@@ -2,6 +2,7 @@
 
 namespace Mechawrench\Laracoins\Tests\Feature\Models;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mechawrench\Laracoins\Laracoins;
 use Mechawrench\Laracoins\Models\Coin;
@@ -206,5 +207,67 @@ class CoinTest extends TestCase
         $user = Coin::where('user_id', 1)->first();
 
         $this->assertEquals(0, $user->is_locked);
+    }
+
+    /** @test */
+    public function it_can_fund_a_user()
+    {
+        $receiver = factory(Coin::class)->create(['quantity' => 0]);
+
+        Laracoins::fundUser($receiver->id, 200, 'Fund from test');
+
+        $this->assertEquals(200, Coin::whereUserId($receiver->id)->first()->quantity);
+    }
+
+    /** @test */
+    public function it_can_retrieve_user_balance()
+    {
+        $user_coins = factory(Coin::class)->create([
+            'user_id' => 1,
+            'quantity' => 100,
+        ]);
+
+        $retrieve_user_coins = Laracoins::balance(1);
+
+        $this->assertEquals($user_coins->quantity, $retrieve_user_coins);
+    }
+
+    /** @test */
+    public function it_can_retrieve_top_10_token_holders()
+    {
+        factory(Coin::class, 20)->create([
+            'quantity' => rand(1, 1000),
+        ]);
+
+        $retrieve = Laracoins::topHolders();
+
+        $this->assertEquals(10, $retrieve->count());
+    }
+
+    /** @test */
+    public function it_can_retrieve_top_x_token_holders()
+    {
+        factory(Coin::class, 50)->create([
+            'quantity' => rand(1, 1000),
+        ]);
+
+        $retrieve = Laracoins::topHolders(20);
+
+        $this->assertEquals(20, $retrieve->count());
+    }
+
+    /** @test */
+    public function it_sends_to_self_and_does_not_dupe_coin()
+    {
+        $user_coins = factory(Coin::class)->create([
+            'user_id' => 1,
+            'quantity' => 100,
+        ]);
+
+        Laracoins::tradeCoins(1, 1, 50, 'Test from CoinTest');
+
+        $user_coins->refresh();
+
+        $this->assertEquals(100, $user_coins->quantity);
     }
 }
