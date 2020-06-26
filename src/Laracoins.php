@@ -45,8 +45,8 @@ class Laracoins
         return Coin::firstOrCreate(['user_id' => $user_id])->quantity;
     }
 
-    public static function topHolders()
+    public static function topHolders($quantity = 10)
     {
-        return Coin::where('quantity', '>', 0)->orderBy('quantity', 'desc')->get()->take(10);
+        return Coin::where('quantity', '>', 0)->orderBy('quantity', 'desc')->get()->take($quantity);
     }
 }
