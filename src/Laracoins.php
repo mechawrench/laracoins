@@ -55,6 +55,13 @@ class Laracoins
 
     public static function topHolders($quantity = 10)
     {
-        return Coin::where('quantity', '>', 0)->orderBy('quantity', 'desc')->get()->take($quantity);
+        $holders = Coin::where('quantity', '>', 0)
+            ->orderBy('quantity', 'desc');
+
+        if (class_exists('App\User')) {
+            $holders->with('user');
+        }
+
+        return $holders->get()->take($quantity);
     }
 }
