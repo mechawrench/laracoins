@@ -32,7 +32,7 @@ class Laracoins
     {
         return Transactions::whereUserId($user_id)
             ->orWhere('to_user_id', $user_id)
-            ->with('users')
+            ->with('user')
             ->orderBy('created_at', 'asc')
             ->get();
     }
