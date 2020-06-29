@@ -19,4 +19,9 @@ class Transactions extends Model
             'comment' => $comment,
         ]);
     }
+
+    public function user()
+    {
+        $this->belongsTo(\App\User::class);
+    }
 }
