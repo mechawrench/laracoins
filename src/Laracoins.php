@@ -30,11 +30,15 @@ class Laracoins
 
     public static function userHistory($user_id)
     {
-        return Transactions::whereUserId($user_id)
+        $history = Transactions::whereUserId($user_id)
             ->orWhere('to_user_id', $user_id)
-            ->with('user')
-            ->orderBy('created_at', 'asc')
-            ->get();
+            ->orderBy('created_at', 'asc');
+
+        if (class_exists('App\User')) {
+            $history->with('user');
+        }
+
+        return $history->get();
     }
 
     public static function fundUser($user_id, $quantity, $comment)

@@ -22,6 +22,10 @@ class Transactions extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        if (class_exists('App\User')) {
+            return $this->belongsTo('App\User');
+        }
+
+        return null;
     }
 }
