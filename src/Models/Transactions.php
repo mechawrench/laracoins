@@ -19,4 +19,13 @@ class Transactions extends Model
             'comment' => $comment,
         ]);
     }
+
+    public function user()
+    {
+        if (class_exists('App\User')) {
+            return $this->belongsTo('App\User');
+        }
+
+        return null;
+    }
 }

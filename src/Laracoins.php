@@ -30,7 +30,15 @@ class Laracoins
 
     public static function userHistory($user_id)
     {
-        return Transactions::whereUserId($user_id)->orWhere('to_user_id', $user_id)->orderBy('created_at', 'asc')->get();
+        $history = Transactions::whereUserId($user_id)
+            ->orWhere('to_user_id', $user_id)
+            ->orderBy('created_at', 'asc');
+
+        if (class_exists('App\User')) {
+            $history->with('user');
+        }
+
+        return $history->get();
     }
 
     public static function fundUser($user_id, $quantity, $comment)
@@ -47,6 +55,13 @@ class Laracoins
 
     public static function topHolders($quantity = 10)
     {
-        return Coin::where('quantity', '>', 0)->orderBy('quantity', 'desc')->get()->take($quantity);
+        $holders = Coin::where('quantity', '>', 0)
+            ->orderBy('quantity', 'desc');
+
+        if (class_exists('App\User')) {
+            $holders->with('user');
+        }
+
+        return $holders->get()->take($quantity);
     }
 }
