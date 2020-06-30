@@ -32,7 +32,7 @@ class Laracoins
     {
         $history = Transactions::whereUserId($user_id)
             ->orWhere('to_user_id', $user_id)
-            ->orderBy('created_at', 'asc');
+            ->orderBy('created_at', 'desc');
 
         if (class_exists('App\User')) {
             $history->with('user');
