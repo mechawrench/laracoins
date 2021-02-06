@@ -1,6 +1,6 @@
 # LaraCoins
 
-![LaraCoins Package](docs/LaraCoins.png "LaraCoins Package")
+![LaraCoins Package](https://banners.beyondco.de/LaraCoins.png?theme=light&packageManager=composer+require&packageName=mechawrench%2Flaracoins&pattern=bankNote&style=style_1&description=Currency%2C+for+your+users%21&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg "LaraCoins Package")
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
 ![Tests](https://github.com/mechawrench/laracoins/workflows/Tests/badge.svg)
