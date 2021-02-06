@@ -1,5 +1,7 @@
 # LaraCoins
 
+![LaraCoins Package](docs/LaraCoins.png "LaraCoins Package")
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
 ![Tests](https://github.com/mechawrench/laracoins/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/mechawrench/laracoins.svg?style=flat-square)](https://packagist.org/packages/mechawrench/laracoins)
