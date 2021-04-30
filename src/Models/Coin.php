@@ -75,6 +75,10 @@ class Coin extends Model
             return $this->belongsTo('App\User');
         }
 
+        if (class_exists('App\Models\User')) {
+            return $this->belongsTo('App\Models\User');
+        }
+
         return null;
     }
 }

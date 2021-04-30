@@ -38,6 +38,10 @@ class Laracoins
             $history->with('user');
         }
 
+        if (class_exists('App\Models\User')) {
+            $history->with('user');
+        }
+
         return $history->get();
     }
 
@@ -59,6 +63,10 @@ class Laracoins
             ->orderBy('quantity', 'desc');
 
         if (class_exists('App\User')) {
+            $holders->with('user');
+        }
+
+        if (class_exists('App\Models\User')) {
             $holders->with('user');
         }
 
